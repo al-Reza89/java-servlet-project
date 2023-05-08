@@ -52,7 +52,7 @@
 								<label class="form-label">Teacher Email</label> <input type="email"
 									class="form-control" name="email">
 							</div>
-							<button type="submit" class="btn btn-primary col-md-12 ">Submit</button>
+							<button style="background: blue; font-size: 25px  "  type="submit" class=" btn-primary col-md-12  ">Submit</button>
 						</form>
 
 

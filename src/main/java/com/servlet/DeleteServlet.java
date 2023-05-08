@@ -33,7 +33,7 @@ public class DeleteServlet extends HttpServlet {
 		{
 			// kisukkhon er jonno message ta store rakhbo
 			
-			session.setAttribute("succMsg", "student Deatils Delete successfully..");
+			session.setAttribute("succMsg", "course Deatils Delete successfully..");
 //			String succMsg = (String) session.getAttribute("succMsg");
 //			System.out.println(succMsg);
 

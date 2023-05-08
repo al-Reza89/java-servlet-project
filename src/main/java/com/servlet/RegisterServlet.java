@@ -40,7 +40,7 @@ public class RegisterServlet extends HttpServlet {
 		if (f) {
 			// kisukkhon er jonno message ta store rakhbo
 
-			session.setAttribute("succMsg", "student Deatils submit successfully..");
+			session.setAttribute("succMsg", "Course Deatils submit successfully..");
 //			String succMsg = (String) session.getAttribute("succMsg");
 //			System.out.println(succMsg);
 

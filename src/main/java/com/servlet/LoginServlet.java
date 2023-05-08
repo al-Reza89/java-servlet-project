@@ -34,15 +34,31 @@ public class LoginServlet extends HttpServlet {
 //		System.out.println(registration);
 		
 
-		boolean f= dao.checkUser(registration);
+		String f= dao.checkUser(registration);
 		
-		if (f) {
+		if (f!=null) {
 			// kisukkhon er jonno message ta store rakhbo
 
 			session.setAttribute("succMsg", "student Deatils submit successfully..");
 			session.setAttribute("localEmail", registration.getStudentEmail());
 //			String succMsg = (String) session.getAttribute("succMsg");
 //			System.out.println(succMsg);
+			
+			System.out.println("f");
+			System.out.println(f);
+			
+			if(f.equals("admin")) {
+				session.setAttribute("role", "admin");
+				resp.sendRedirect("index.jsp");
+			}else if(f.equals("student"))
+			{   session.setAttribute("role", "student");
+				resp.sendRedirect("allCourse.jsp");
+			}else if(f.equals("teacher")) {
+				session.setAttribute("role", "teacher");
+				resp.sendRedirect("courseTeacher.jsp");
+			}else {
+				resp.sendRedirect("register.jsp");
+			}
 			
 //			<% 
 //			if ( localEmail!= null ) {
@@ -51,7 +67,7 @@ public class LoginServlet extends HttpServlet {
 //				%>
 
 
-			resp.sendRedirect("allCourse.jsp");
+			
 //			System.out.println("student Deatils submit successfully..");
 		} else {
 			session.setAttribute("errorMsg", "something wrong on server...");

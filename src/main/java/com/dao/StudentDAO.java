@@ -78,6 +78,42 @@ public class StudentDAO {
 		return list;
 
 	}
+	
+	
+	public List<Student> getTeacherCourse(String teacherEmail) {
+		List<Student> list = new ArrayList<Student>();
+
+		Student s = null;
+
+		try {
+
+			String sql = "select * from student where email=? ";
+			PreparedStatement ps = conn.prepareStatement(sql);
+			ps.setString(1, teacherEmail);
+
+			ResultSet rs = ps.executeQuery();
+
+			while (rs.next()) {
+				s = new Student();
+				s.setId(rs.getInt(1));
+				s.setFullName(rs.getString(2));
+				s.setDob(rs.getString(3));
+				s.setAddress(rs.getString(4));
+				s.setQualification(rs.getString(5));
+				s.setEmail(rs.getString(6));
+
+				list.add(s);
+			}
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		return list;
+
+	}
+	
+	
 
 	public Student getStudentById(int id) {
 		Student s = null;

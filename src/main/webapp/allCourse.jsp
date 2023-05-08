@@ -102,6 +102,10 @@
 					</div>
 					<form action="joinCourse" method="post" >
 					<input type="hidden" name="id" value="<%=s.getId()%>">
+					<input type="hidden" name="courseTitle" value="<%=s.getQualification()%>">
+					<input type="hidden" name="courseCode" value="<%=s.getAddress()%>">
+					<input type="hidden" name="courseEnroll" value="<%=s.getDob()%>">
+					<input type="hidden" name="courseTeacher" value="<%=s.getFullName()%>">
 					<div class="px-2  py-3 flex text-center  justify-center ">
 						<button type="submit"
 							class="group rounded h-8 w-36 bg-green-500 font-bold text-lg text-white relative overflow-hidden">

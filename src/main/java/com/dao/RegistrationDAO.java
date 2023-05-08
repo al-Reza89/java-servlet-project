@@ -23,7 +23,7 @@ public class RegistrationDAO {
 		
 		try {
 
-			String sql= "insert into student_infos(studentName,studentEmail,studentPassword,studentDept,studentReg) values(?,?,?,?,?)";
+			String sql= "insert into student_infos(studentName,studentEmail,studentPassword,studentDept,studentReg,role) values(?,?,?,?,?,?)";
 			
 			PreparedStatement ps= conn.prepareStatement(sql);
 			
@@ -32,6 +32,7 @@ public class RegistrationDAO {
 			ps.setString(3, registration.getStudentPassword());
 			ps.setString(4, registration.getStudentDept());
 			ps.setString(5, registration.getStudentReg());
+			ps.setString(6, "student");
 			
 			
 			int i= ps.executeUpdate();
@@ -48,9 +49,9 @@ public class RegistrationDAO {
 	}
 	
 	
-	public boolean checkUser(Registration registration)
+	public String checkUser(Registration registration)
 	{
-		boolean f=false;
+		String returnRole="student";
 				
 		
 		try {
@@ -63,18 +64,22 @@ public class RegistrationDAO {
 			
 			ResultSet rs=ps.executeQuery();
 			
-			String returnEmail=null,returnPassword=null;
+			String returnEmail=null,returnPassword=null ;
 			
 			while (rs.next()) {
 				 returnEmail = rs.getString("studentEmail");
 				 returnPassword = rs.getString("studentPassword");
-//				System.out.println( "Email: " + studentEmail + ", Password: " + studentPassword);
+				 returnRole= rs.getString("role");
+//				 System.out.println("Email: " + returnEmail + ", Password: " + returnPassword + ", Role: " + returnRole);
 			}
 			
 			if (returnEmail != null && returnEmail.equals(registration.getStudentEmail()) &&
 	                returnPassword != null && returnPassword.equals(registration.getStudentPassword())) {
-	            f = true;
+				
+	            return returnRole;
 	        }
+			
+			
 			
 			
 		} catch (Exception e) {
@@ -82,7 +87,7 @@ public class RegistrationDAO {
 		}
 		
 		
-		return f;
+		return returnRole;
 	}
 	
 	

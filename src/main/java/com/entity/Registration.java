@@ -9,6 +9,7 @@ public class Registration {
 	private String studentDept;
 	private String studentReg;
 	private String studentCourse;
+	private String role;
 	public Registration() {
 		super();
 		// TODO Auto-generated constructor stub
@@ -46,6 +47,28 @@ public class Registration {
 		super();
 		this.studentEmail = studentEmail;
 		this.studentPassword = studentPassword;
+	}
+
+	
+
+
+	public String getRole() {
+		return role;
+	}
+
+
+
+	public void setRole(String role) {
+		this.role = role;
+	}
+
+
+
+	public Registration(String studentEmail, String studentPassword, String role) {
+		super();
+		this.studentEmail = studentEmail;
+		this.studentPassword = studentPassword;
+		this.role = role;
 	}
 
 
@@ -96,7 +119,7 @@ public class Registration {
 	public String toString() {
 		return "Registration [id=" + id + ", studentName=" + studentName + ", studentEmail=" + studentEmail
 				+ ", studentPassword=" + studentPassword + ", studentDept=" + studentDept + ", studentReg=" + studentReg
-				+ ", studentCourse=" + studentCourse + "]";
+				+ ", studentCourse=" + studentCourse + ", role=" + role + "]";
 	}
 
 	

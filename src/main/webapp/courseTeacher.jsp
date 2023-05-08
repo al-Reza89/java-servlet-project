@@ -1,5 +1,3 @@
-<%@page import="com.entity.AddCourse"%>
-<%@page import="com.dao.CourseDAO"%>
 <%@page import="com.entity.Student"%>
 <%@page import="java.util.List"%>
 <%@page import="com.conn.DBConnect"%>
@@ -21,26 +19,26 @@
 
 	<%@include file="navbarHome.jsp"%>
 
-	
 
 	<h2
 		class=" text-center pt-3 pb-3 text-4xl font-bold leading-9 tracking-tight text-gray-900   ">See
-		All Your Courses</h2>
-		
-		
+		All Our Courses</h2>
 	<div class="flex  items-center justify-center pt-6  ">
 		<div
 			class="grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4 xl:grid-cols-4  ">
 
 			<!-- 3 card -->
-			<%
-			CourseDAO dao = new CourseDAO(DBConnect.getConn());
-			
-			String studentEmail = (String) session.getAttribute("localEmail");
-			List<AddCourse> list = dao.getAllCourseId(studentEmail);
 
-			for (AddCourse s : list) {
+			<%
+			StudentDAO dao = new StudentDAO(DBConnect.getConn());
+			
+			String teacherEmail = (String) session.getAttribute("localEmail");
+			List<Student> list = dao.getTeacherCourse(teacherEmail);
+
+			for (Student s : list) {
 			%>
+
+
 			<div
 				class="relative bg-white py-6 px-6 rounded-3xl w-64 my-4   hover:shadow-2xl ">
 				<div
@@ -54,7 +52,7 @@
                 </svg>
 				</div>
 				<div class="mt-8">
-					<p class="text-xl font-semibold my-2"><%=s.getCourseTitle() %> </p>
+					<p class="text-xl font-semibold my-2"><%=s.getQualification() %></p>
 					<div class="flex space-x-2 text-gray-400 text-sm">
 						<!-- svg  -->
 						<svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5"
@@ -66,7 +64,7 @@
 								stroke-linejoin="round" stroke-width="2"
 								d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
                     </svg>
-						<p><%=s.getCourseCode() %> </p>
+						<p><%=s.getAddress() %></p>
 					</div>
 					<div class="flex space-x-2 text-gray-400 text-sm my-3">
 						<!-- svg  -->
@@ -76,10 +74,10 @@
 								stroke-linejoin="round" stroke-width="2"
 								d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
                     </svg>
-						<p><%=s.getCourseEnroll() %> </p>
+						<p><%=s.getDob() %></p>
 					</div>
 					<div class="flex font-bold space-x-2 text-black text-sm my-3">
-						<h4><%=s.getCourseTeacher() %> </h4>
+						<h4><%=s.getFullName() %></h4>
 					</div>
 					<div class="border-t-2 "></div>
 
@@ -103,11 +101,17 @@
 							</div>
 						</div>
 					</div>
-					
+					<form action="joinCourse" method="post" >
+					<input type="hidden" name="id" value="<%=s.getId()%>">
+					<input type="hidden" name="courseTitle" value="<%=s.getQualification()%>">
+					<input type="hidden" name="courseCode" value="<%=s.getAddress()%>">
+					<input type="hidden" name="courseEnroll" value="<%=s.getDob()%>">
+					<input type="hidden" name="courseTeacher" value="<%=s.getFullName()%>">	
+					</form>
 					
 				</div>
 			</div>
-			
+
 			<%
 			}
 			%>

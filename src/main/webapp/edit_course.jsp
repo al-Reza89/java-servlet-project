@@ -21,7 +21,7 @@
 			<div class="col-md-6 offset-md-3">
 				<div class="card">
 					<div class="card-body">
-						<p class="fs-3 text-center">Edit Student</p>
+						<p class="fs-3 text-center">Edit Course</p>
 
 
 						<%
@@ -57,7 +57,7 @@
 							<input type="hidden" name="id" value="<%=s.getId()%>">
 
 
-							<button type="submit" class="btn btn-primary col-md-12 ">Update</button>
+							<button type="submit" style="background: blue; font-size: 25px " class=" btn-primary col-md-12  ">Update</button>
 						</form>
 					</div>
 				</div>
